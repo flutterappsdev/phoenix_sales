@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:phoenix_sales/screen/menu_sales_screen.dart';
 import './screen/login_screen.dart';
 import 'screen/tr_entry_screen.dart';
 import './screen/menu_screen.dart';
@@ -8,6 +9,7 @@ import './screen/supply_entry_screen.dart';
 import './screen/List_dm_data.dart';
 import './screen/imgae_upload_screen.dart';
 import './screen/trip_screen.dart';
+import './screen/chicks_deamand_screen.dart';
 
  Future<void> main() async {
    WidgetsFlutterBinding.ensureInitialized();
@@ -33,12 +35,14 @@ class MyApp extends StatelessWidget {
       ),
       home: LoginScreen(),
       routes: {
+        SalesMenuGrid.id : (context)=>SalesMenuGrid(),
         TrEntryScreen.id : (context)=>TrEntryScreen(),
         ListTrData.id :(context)=>ListTrData(),
         SupplyEntryScreen.id : (context)=>SupplyEntryScreen(),
         ListDmData.id : (context)=>ListDmData(),
         ImageUploadScreen.id : (context)=>ImageUploadScreen(),
         TripScreen.id : (context)=>TripScreen(),
+        ChicksDemandScreen.id :(context)=>ChicksDemandScreen(),
       },
     );
   }

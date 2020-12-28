@@ -50,10 +50,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 decoration: kTextFieldDecoration.copyWith(
                     icon: Icon(FontAwesomeIcons.userAlt),
                     labelText: 'Enter your username.'),
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.black
-                ),
+                style: TextStyle(fontSize: 16, color: Colors.black),
               ),
               SizedBox(
                 height: 20,
@@ -78,29 +75,29 @@ class _LoginScreenState extends State<LoginScreen> {
                     title: 'Log In',
                     colour: Colors.lightBlueAccent,
                     onPressed: () async {
-
                       final connResult =
-                      await Connectivity().checkConnectivity();
+                          await Connectivity().checkConnectivity();
                       if (connResult != ConnectivityResult.mobile &&
                           connResult != ConnectivityResult.wifi) {
                         showSnackBar('Please check you internet connection');
                         return;
                       }
 
-                      if (_userNameTextController.text== "") {
+                      if (_userNameTextController.text == "") {
                         showSnackBar('Please enter a valid user name');
                         return;
                       }
 
-                      if (_passwordTextController.text =="") {
+                      if (_passwordTextController.text == "") {
                         showSnackBar('Please enter a valid password');
                         return;
                       }
 
-                      showDialog(context: context,
+                      showDialog(
+                          context: context,
                           barrierDismissible: false,
-                          builder: (BuildContext blidcontext)=>ProgressDialog('Logging in you...')
-                      );
+                          builder: (BuildContext blidcontext) =>
+                              ProgressDialog('Logging in you...'));
                       String _url =
                           'http://117.240.18.180:91/mynew.asmx/Login?User=${_userNameTextController.text}&Password=${_passwordTextController.text}';
                       NetworkHelper networkHelper = NetworkHelper(_url);
@@ -133,16 +130,12 @@ class _LoginScreenState extends State<LoginScreen> {
                               ]),
                         );
                       } else {
-                       if(UserType == 'Sales') {
-                         Navigator.pushReplacement(
-                           context,
-                           MaterialPageRoute(
-                             builder: (context) => SalesMenuGrid(),
-                           ),
-                         );
-                       }
+                        if (UserType == 'Sales') {
+                          Navigator.pushNamedAndRemoveUntil(
+                              context, SalesMenuGrid.id, (route) => false);
+                        }
                       }
-                    }),
+                    },),
               ),
             ],
           ),

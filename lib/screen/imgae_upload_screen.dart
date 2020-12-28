@@ -36,7 +36,7 @@ class _ImageUploadScreenState extends State<ImageUploadScreen> {
 
     final imageFile = await picker.getImage(
       source: ImageSource.camera,
-      maxWidth: 400,
+      maxWidth: 600,
     );
     if (imageFile == null) {
       return;
@@ -52,7 +52,8 @@ class _ImageUploadScreenState extends State<ImageUploadScreen> {
   Future<void> _takePictureGalley() async {
     final imageFile = await ImagePicker.pickImage(
       source: ImageSource.gallery,
-      maxWidth: 400,
+      maxWidth: 600,
+
     );
     if (imageFile == null) {
       return;
@@ -142,7 +143,6 @@ class _ImageUploadScreenState extends State<ImageUploadScreen> {
               ),
               _isUploaded ? CircularProgressIndicator(strokeWidth: 3,semanticsLabel: 'Uploading...',) :
               RoundedButton(
-
                   title: 'Upload Image',
                   colour: Colors.lightBlueAccent,
                   onPressed: () async {
@@ -163,7 +163,7 @@ class _ImageUploadScreenState extends State<ImageUploadScreen> {
                     final ref = FirebaseStorage.instance
                         .ref()
                         .child('user_image')
-                        .child(AreaCode + id + '.jpg');
+                        .child( DateTime.now().toString() + AreaCode + id + '.jpg');
 
                     await ref.putFile(_storedImage);
                     print("ref" + ref.toString());

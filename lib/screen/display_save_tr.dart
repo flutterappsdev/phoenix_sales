@@ -278,10 +278,11 @@ class _DisplayAndSaveTRState extends State<DisplayAndSaveTR> {
                    // showToast("Show Long Toast", duration: Toast.LENGTH_LONG);
                     Toast.show("TR Data Saved...", context, duration: Toast.LENGTH_LONG, gravity: Toast.CENTER);
 
+                    Navigator.pop(context);
                     //Sending SMS
                     try {
                       String _msg =
-                          "Note:This Is Temporary Receipt: Received with thanks $_paymode given qty  Rs" +
+                          "Note:This Is Temporary Receipt: Received with thanks $_paymode given qty  Rs:" +
                              _Tramount +  " @ " + _rate + "From $_CName For $_ctype Chicks By TR No $_TRNumber For Any Query Contact:9685043413 "  ;
                       List<String> recipents = [_MobileNumber];
                       String _r = await sendSMS(

@@ -7,6 +7,7 @@ import '../constant/constants.dart';
 import '../screen/List_tr_data.dart';
 
 class SalesMenuGrid extends StatelessWidget {
+  static const id = 'SalesMenuGrid';
   @override
   Widget build(BuildContext context) {
     return Scaffold(

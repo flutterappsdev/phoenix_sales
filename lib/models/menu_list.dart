@@ -22,7 +22,8 @@ const DUMMY_CATEGORIES = const [
     id: 'c3',
     title: 'Chicks Demand',
     color: Colors.orange,
-      icon: Icons.note
+    routeName: 'ChicksDemandScreen',
+    icon: Icons.note
   ),
   Menu(
     id: 'c4',

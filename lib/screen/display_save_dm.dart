@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:connectivity/connectivity.dart';
+import 'package:flutter_sms/flutter_sms.dart';
+import 'package:flutter_open_whatsapp/flutter_open_whatsapp.dart';
 import '../widgets/rounded_button.dart';
 import 'package:toast/toast.dart';
 import '../network/network.dart';
@@ -215,6 +217,22 @@ class _SaveSupplyState extends State<SaveSupply> {
                     }
                     // showToast("Show Long Toast", duration: Toast.LENGTH_LONG);
                     Toast.show("Supply Information Saved...", context, duration: Toast.LENGTH_LONG, gravity: Toast.CENTER);
+
+                    Navigator.of(context).pop();
+
+                    try {
+                      String _msg =
+                          "Supplied $_ctype Chicks having Qty $_totalChicks With Transit Mortality $_trasnitMortality @ $_rate to $_CName  by DM $_dmNumber For Any Query Contact:9685043413 "  ;
+                      List<String> recipents = [_MobileNumber];
+                      String _r = await sendSMS(
+                          message: _msg, recipients: recipents);
+                      //print(_r);
+                      FlutterOpenWhatsapp.sendSingleMessage(
+                          "91$_MobileNumber", _msg);
+                    } catch (e) {
+                      print(e);
+                    }
+
 
                     Navigator.push(
                       context,
