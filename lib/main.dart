@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:phoenix_sales/screen/daily_expenses_screen.dart';
 import 'package:phoenix_sales/screen/menu_sales_screen.dart';
 import './screen/login_screen.dart';
 import 'screen/tr_entry_screen.dart';
@@ -10,6 +11,7 @@ import './screen/List_dm_data.dart';
 import './screen/imgae_upload_screen.dart';
 import './screen/trip_screen.dart';
 import './screen/chicks_deamand_screen.dart';
+import './screen/daily_expenses_screen.dart';
 
  Future<void> main() async {
    WidgetsFlutterBinding.ensureInitialized();
@@ -43,6 +45,7 @@ class MyApp extends StatelessWidget {
         ImageUploadScreen.id : (context)=>ImageUploadScreen(),
         TripScreen.id : (context)=>TripScreen(),
         ChicksDemandScreen.id :(context)=>ChicksDemandScreen(),
+        DailyExpensesScreen.id : (context)=>DailyExpensesScreen(),
       },
     );
   }

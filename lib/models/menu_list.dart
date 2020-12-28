@@ -35,6 +35,7 @@ const DUMMY_CATEGORIES = const [
       id: 'c4',
       title: 'Daily Expenses',
       color: Colors.blueGrey,
+      routeName: 'DailyExpensesScreen',
       icon: FontAwesomeIcons.moneyBill
   ),
   Menu(
@@ -66,7 +67,7 @@ const DUMMY_CATEGORIES = const [
   ),
   Menu(
     id: 'c9',
-    title: 'List Deposit',
+    title: 'List Expenses',
     color: Colors.pink,
       icon: FontAwesomeIcons.moneyBillWave
   ),
