@@ -63,7 +63,8 @@ const DUMMY_CATEGORIES = const [
     id: 'c8',
     title: 'List Demand',
     color: Colors.lightGreen,
-      icon: FontAwesomeIcons.listOl
+      icon: FontAwesomeIcons.listOl,
+      routeName: 'ListDemadData'
   ),
   Menu(
     id: 'c9',

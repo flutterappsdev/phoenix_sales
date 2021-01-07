@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:autocomplete_textfield/autocomplete_textfield.dart';
 import 'package:flutter/widgets.dart';
+import 'package:toast/toast.dart';
+import 'package:connectivity/connectivity.dart';
+import 'package:string_validator/string_validator.dart';
 import '../constant/constants.dart';
 import '../network/network.dart';
 import '../models/customer.dart';
@@ -28,6 +31,8 @@ class _ChicksDemandScreenState extends State<ChicksDemandScreen> {
   DateTime selectedHatchDate = DateTime.now();
   String _demandNumber = '';
   String _valueChicksType = "Broiler";
+  String CCode = '';
+  String CName = '';
 
   _selectDate(BuildContext context) async {
     final DateTime picked = await showDatePicker(
@@ -227,6 +232,8 @@ class _ChicksDemandScreenState extends State<ChicksDemandScreen> {
                   setState(() {
                     txtController.text = item.customerName;
                     added = txtController.text.split('#');
+                    CCode = added[1];
+                    CName = added[0];
                   });
                 },
                 itemBuilder: (context, item) {
@@ -312,14 +319,72 @@ class _ChicksDemandScreenState extends State<ChicksDemandScreen> {
               RoundedButton(
                   title: 'Save',
                   colour: Colors.lightBlueAccent,
-                  onPressed: () async {}),
+                  onPressed: () async {
+                    var connectivityResult =
+                    await Connectivity().checkConnectivity();
+                    if (connectivityResult != ConnectivityResult.mobile &&
+                        connectivityResult != ConnectivityResult.wifi) {
+                      Toast.show("No internet connectivity...", context, duration: Toast.LENGTH_LONG, gravity: Toast.CENTER);
+                      return;
+                    }
+                    if (txtController.text.length <= 0) {
+
+                      Toast.show("Please provide a valid customer", context, duration: Toast.LENGTH_LONG, gravity: Toast.CENTER);
+                      return;
+                    }
+                    if (_demadDateController.text.length <= 0) {
+                      Toast.show("Please provide a valid demand date", context, duration: Toast.LENGTH_LONG, gravity: Toast.CENTER);
+                      return;
+                    }
+                    if (_hatchDateController.text.length <= 0) {
+                      Toast.show("Please provide a valid hatch date", context, duration: Toast.LENGTH_LONG, gravity: Toast.CENTER);
+                      return;
+                    }
+                    if (_demadQty1Controller.text.length <= 0) {
+                      Toast.show("Please provide a valid Quantity", context, duration: Toast.LENGTH_LONG, gravity: Toast.CENTER);
+                      return;
+                    }
+                    else{
+                      if(isNumeric(_demadQty1Controller.text)== true)
+                      {        }
+                      else
+                      {
+                        Toast.show("Please provide a valid Quantity", context, duration: Toast.LENGTH_LONG, gravity: Toast.CENTER);
+                      }
+                    }
+
+
+                    try {
+                      String url =
+                          '$Url/InsertDemandData?AreaCode=$AreaCode&Area=$AreaName&DMNo=${_demandNumber}&';
+                      url +=
+                      "DMDate=${_demadDateController.text}&HatchDate=${_hatchDateController.text}&uname=$UserName&Code=$CCode&CName=$CName&";
+                      url +=
+                      "Chick_type=$_valueChicksType&";
+                      url +=
+                      "CihckRate=0&Remarks=${_remarksController.text}&TotalChicks=${_demadQty1Controller.text}&Mortality=${_demadQty2Controller.text}";
+                      print(url);
+                      NetworkHelper networkHelper = NetworkHelper(url);
+                      var data = await networkHelper.getData();
+                      print(data);
+                    } catch (e) {
+                      print(e);
+                    }
+                    // showToast("Show Long Toast", duration: Toast.LENGTH_LONG);
+                    Toast.show("Demand Information Saved...", context, duration: Toast.LENGTH_LONG, gravity: Toast.CENTER);
+
+                    Navigator.of(context).pop();
+                  }),
               SizedBox(
                 height: 5,
               ),
               RoundedButton(
                   title: 'Back',
                   colour: Colors.lightBlueAccent,
-                  onPressed: () async {}),
+                  onPressed: () async {
+                    Navigator.of(context).pop();
+
+                  }),
             ],
           ),
         ),

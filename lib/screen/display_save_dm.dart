@@ -187,7 +187,7 @@ class _SaveSupplyState extends State<SaveSupply> {
                 height: 20,
               ),
               RoundedButton(
-                  title: 'Save TR',
+                  title: 'Save Supply',
                   colour: Colors.lightBlueAccent,
                   onPressed: () async {
                     var connectivityResult =

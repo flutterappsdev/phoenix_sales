@@ -12,6 +12,7 @@ import './screen/imgae_upload_screen.dart';
 import './screen/trip_screen.dart';
 import './screen/chicks_deamand_screen.dart';
 import './screen/daily_expenses_screen.dart';
+import './screen/List_demand_data.dart';
 
  Future<void> main() async {
    WidgetsFlutterBinding.ensureInitialized();
@@ -46,6 +47,7 @@ class MyApp extends StatelessWidget {
         TripScreen.id : (context)=>TripScreen(),
         ChicksDemandScreen.id :(context)=>ChicksDemandScreen(),
         DailyExpensesScreen.id : (context)=>DailyExpensesScreen(),
+        ListDemadData.id :(context)=>ListDemadData(),
       },
     );
   }
