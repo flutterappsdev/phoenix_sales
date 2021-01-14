@@ -148,7 +148,7 @@ class _TrEntryScreenState extends State<TrEntryScreen> {
 
     if (picked != null && picked != selectedHatchDate) {
       setState(() {
-        selectedDate = picked;
+        selectedHatchDate = picked;
         _hatchDateController.text = selectedDate.toString().split(' ')[0];
       });
     } else {
