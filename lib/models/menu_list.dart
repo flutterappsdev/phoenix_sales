@@ -70,6 +70,7 @@ const DUMMY_CATEGORIES = const [
     id: 'c9',
     title: 'List Expenses',
     color: Colors.pink,
+      routeName: 'ListExpenseData',
       icon: FontAwesomeIcons.moneyBillWave
   ),
   Menu(

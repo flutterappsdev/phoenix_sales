@@ -6,6 +6,7 @@ import '../widgets/rounded_button.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:toast/toast.dart';
 import 'package:string_validator/string_validator.dart';
+import '../network/network.dart';
 
 class DailyExpensesScreen extends StatefulWidget {
   static const id = 'DailyExpensesScreen';
@@ -203,7 +204,7 @@ class _DailyExpensesScreenState extends State<DailyExpensesScreen> {
                     }
 
                     if (_expDateController.text.length <= 0) {
-                      Toast.show('Please provide a valid TR date', context,duration: Toast.LENGTH_LONG, gravity: Toast.CENTER);
+                      Toast.show('Please provide a valid expense date', context,duration: Toast.LENGTH_LONG, gravity: Toast.CENTER);
                       return;
                     }
                     if (_expAmountController.text.length <= 0) {
@@ -220,6 +221,26 @@ class _DailyExpensesScreenState extends State<DailyExpensesScreen> {
                         Toast.show('Please provide a valid amount', context,duration: Toast.LENGTH_LONG, gravity: Toast.CENTER);
                       }
                     }
+
+                    try {
+                      String url =
+                          '$Url/InsertExpsData?AreaCode=$AreaCode&Area=$AreaName&uname=${UserName}&';
+                      url +=
+                      "ExpNo=${_expNumber}&ExpDate=${_expDateController.text}&ExpenseType=$_myValue&ExpenseAmount=${_expAmountController.text}&";
+                      url +=
+                      "Remarks=${_expRemarkController.text}";
+                        print(url);
+                      NetworkHelper networkHelper = NetworkHelper(url);
+                      var data = await networkHelper.getData();
+                      print(data);
+                    } catch (e) {
+                      print(e);
+                    }
+                    // showToast("Show Long Toast", duration: Toast.LENGTH_LONG);
+                    Toast.show("Expense Information Saved...", context, duration: Toast.LENGTH_LONG, gravity: Toast.CENTER);
+
+                    Navigator.of(context).pop();
+
 
                   }),
             ],
