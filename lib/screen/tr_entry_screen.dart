@@ -385,7 +385,7 @@ class _TrEntryScreenState extends State<TrEntryScreen> {
                       controller: _chqNumberController,
                       style: TextStyle(color: Colors.black, fontSize: 18),
                       decoration: kTextFieldDecoration.copyWith(
-                          labelText: 'Chq/NEFT/RTGS Number'),
+                          labelText: 'CHQ/NEFT/RTGS NUMBER'),
                     ),
                   ),
                 ],
@@ -524,8 +524,8 @@ class _TrEntryScreenState extends State<TrEntryScreen> {
                             value: 'Layer',
                           ),
                           DropdownMenuItem(
-                            child: Text("Cockerel"),
-                            value: 'Cockerel',
+                            child: Text("Cockrel"),
+                            value: 'Cockrel',
                           ),
                         ],
                         onChanged: (value) {

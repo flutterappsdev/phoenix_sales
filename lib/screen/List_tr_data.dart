@@ -11,7 +11,7 @@ class ListTr {
   final String CName;
   final String Ctype;
   final String bankdet;
-  final String bankdate;
+  final String hatchdate;
   final String paytype;
   final String rate;
   ListTr(
@@ -20,7 +20,7 @@ class ListTr {
       this.Amount,
       this.CCode,
       this.CName,
-      this.Ctype,this.bankdet,this.bankdate,this.paytype,this.rate});
+      this.Ctype,this.bankdet,this.hatchdate,this.paytype,this.rate});
 }
 
 class ListTrData extends StatefulWidget {
@@ -55,7 +55,7 @@ class _ListTrDataState extends State<ListTrData> {
             Ctype: c['Chick_type'].toString(),
 
             bankdet: c['Bank_det'].toString(),
-            bankdate: c['bankdate'].toString(),
+            hatchdate: c['bankdate'].toString(),
             paytype: c['Pay_mode'].toString(),
             rate: c['Rate'].toString(),
 
@@ -88,7 +88,7 @@ class _ListTrDataState extends State<ListTrData> {
             Ctype: c['Chick_type'].toString(),
 
             bankdet: c['Bank_det'].toString(),
-            bankdate: c['bankdate'].toString(),
+            hatchdate: c['HatchDate'].toString(),
             paytype: c['Pay_mode'].toString(),
             rate: c['Rate'].toString(),
 
@@ -246,8 +246,8 @@ class _ListTrDataState extends State<ListTrData> {
                           ),
                           SizedBox(width: 5,),
                           Expanded(
-                            child: Text('Deposit Date: ' +
-                                trList[index].bankdate.toString(),
+                            child: Text('Hatch Date: ' +
+                                trList[index].hatchdate.toString(),
                               style: TextStyle(color: Colors.black),
                             ),
                           ),

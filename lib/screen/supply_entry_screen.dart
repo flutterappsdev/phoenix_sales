@@ -349,8 +349,8 @@ class _SupplyEntryScreenState extends State<SupplyEntryScreen> {
                             value: 'Layer',
                           ),
                           DropdownMenuItem(
-                            child: Text("Cockerel"),
-                            value: 'Cockerel',
+                            child: Text("Cockrel"),
+                            value: 'Cockrel',
                           ),
                         ],
                         onChanged: (value) {

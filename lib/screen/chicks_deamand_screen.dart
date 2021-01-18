@@ -269,8 +269,8 @@ class _ChicksDemandScreenState extends State<ChicksDemandScreen> {
                             value: 'Layer',
                           ),
                           DropdownMenuItem(
-                            child: Text("Cockerel"),
-                            value: 'Cockerel',
+                            child: Text("Cockrel"),
+                            value: 'Cockrel',
                           ),
                         ],
                         onChanged: (value) {

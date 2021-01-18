@@ -4,27 +4,36 @@ import '../widgets/rounded_button.dart';
 import '../network/network.dart';
 
 
-class ListDemand {
-  final String dmNo;
-  final String dmDate;
-  final String totalChicks;
-  final String CCode;
-  final String CName;
-  final String Ctype;
-  final String mortalty;
-  final String rate;
-  final String hdate;
+class ListExpenses {
+  final String ExpNo;
+  final String ExpDate;
+  final String ExpenseType;
+  final String ExpenseAmount;
+  final String Remarks;
 
-  ListDemand(
-      {this.dmNo,
-        this.dmDate,
-        this.totalChicks,
-        this.CCode,
-        this.CName,
-        this.Ctype,
-        this.mortalty,
-        this.rate,
-        this.hdate});
+  //
+  // "id": 9,
+  // "AreaCode": "RP",
+  // "Area": "RAIPUR",
+  // "session": "2021",
+  // "uname": "qw",
+  // "entrydate": "2021-01-14T17:00:14.52",
+  // "ExpNo": "EXP/2/RP/Jan 14 2021  5:00PM/2021",
+  // "ExpDate": "2021-01-14T00:00:00",
+  // "ExpenseType": "Petrol Expenses",
+  // "ExpenseAmount": "125",
+  // "Remarks": "myexpenses",
+  // "expidarea": 2,
+  // "isEmailed": null,
+  // "isPosted": null
+
+  ListExpenses(
+      {this.ExpNo,
+        this.ExpDate,
+        this.ExpenseType,
+        this.ExpenseAmount,
+        this.Remarks,
+        });
 }
 
 
@@ -38,8 +47,37 @@ class _ListExpenseDataState extends State<ListExpenseData> {
 
   final _dmDateController = TextEditingController();
   DateTime selectedDate = DateTime.now();
-  List<ListDemand> dmList = [];
+  List<ListExpenses> expenseList = [];
   bool _isDropDownFilled = false;
+
+
+  void fillExpenses() async {
+    String url =
+        '$Url/ShowAreaExpsData?&uname=$UserName&Exp_Date=${_dmDateController.text}';
+    print(url);
+    NetworkHelper networkHelper = NetworkHelper(url);
+    var data = await networkHelper.getData();
+     //print(data);
+    expenseList.clear();
+    for (var c in data['AreaExpenseData']) {
+
+      if (c['ExpNo'].toString() != 'null') {
+        print(c['ExpNo'].toString());
+        setState(() {
+          expenseList.add(ListExpenses(
+            ExpNo: c['ExpNo'].toString(),
+            ExpDate: c['ExpDate'].toString(),
+            ExpenseType: c['ExpenseType'].toString(),
+            ExpenseAmount: c['ExpenseAmount'].toString(),
+              Remarks:c['Remarks'].toString(),
+                      ));
+        });
+      }
+    }
+    _isDropDownFilled = true;
+   // print("cddsfsf" + expenseList[0].ExpenseType);
+    print(expenseList.length.toString());
+  }
 
   _selectDemandDate(BuildContext context) async {
     final DateTime picked = await showDatePicker(
@@ -92,7 +130,7 @@ class _ListExpenseDataState extends State<ListExpenseData> {
                     controller: _dmDateController,
                     style: TextStyle(color: Colors.black, fontSize: 18),
                     decoration: kTextFieldDecoration.copyWith(
-                        labelText: 'Select Hatch Date'),
+                        labelText: 'Select Expense Date'),
                   ),
                 ),
                 Flexible(
@@ -108,10 +146,10 @@ class _ListExpenseDataState extends State<ListExpenseData> {
               ],
             ),
             RoundedButton(
-                title: 'Show Demand',
+                title: 'Show Expense',
                 colour: Colors.lightBlueAccent,
                 onPressed: () async {
-                 // filldemandData();
+                  fillExpenses();
                 }),
             // RoundedButton(
             //     title: 'Show ALL Demand',
@@ -130,46 +168,33 @@ class _ListExpenseDataState extends State<ListExpenseData> {
                         height: 5,
                       ),
                       Text(
-                        dmList[index].dmNo.toString(),
+                        expenseList[index].ExpNo.toString(),
                         style: TextStyle(color: Colors.green),
                       ),
+
                       Text(
-                        dmList[index].CName +
-                            "#" +
-                            dmList[index].CCode.toString(),
-                        style: TextStyle(color: Colors.red),
-                      ),
-                      Text(
-                        'Demand Date: ' + dmList[index].dmDate.toString(),
+                        'Expense Date: ' + expenseList[index].ExpDate.toString(),
                         style: TextStyle(color: Colors.black),
                       ),
                       Text(
-                        'Hatch Date: ' + dmList[index].hdate.toString(),
+                        'Expense Type: ' + expenseList[index].ExpenseType .toString(),
                         style: TextStyle(color: Colors.black),
                       ),
                       Text(
-                        "Demand Qty Chicks-1  " +
-                            dmList[index].totalChicks.toString(),
+                        "Expense Amounr  " +
+                            expenseList[index].ExpenseAmount.toString(),
                         style: TextStyle(color: Colors.black),
                       ),
                       Row(
                         children: [
                           Expanded(
                             child: Text(
-                              "Demand Qty Chicks-2  " +
-                                  dmList[index].mortalty.toString(),
+                              "Remarks  " +
+                                  expenseList[index].Remarks.toString(),
                               style: TextStyle(color: Colors.black),
                             ),
                           ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Expanded(
-                            child: Text(
-                              "-",
-                              style: TextStyle(color: Colors.black),
-                            ),
-                          )
+
                         ],
                       ),
                       SizedBox(
@@ -185,7 +210,7 @@ class _ListExpenseDataState extends State<ListExpenseData> {
                       ),
                     ],
                   ),
-                  itemCount: dmList.length,
+                  itemCount: expenseList.length,
                 ),
               ),
             )

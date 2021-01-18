@@ -13,6 +13,7 @@ class ListDm {
   final String mortalty;
   final String rate;
   final String hdate;
+  final String hatchries;
 
   ListDm(
       {this.dmNo,
@@ -23,7 +24,8 @@ class ListDm {
       this.Ctype,
       this.mortalty,
       this.rate,
-      this.hdate});
+      this.hdate,
+      this.hatchries});
 }
 
 class ListDmData extends StatefulWidget {
@@ -59,6 +61,7 @@ class _ListDmDataState extends State<ListDmData> {
             mortalty: c['Mortality'].toString(),
             rate: c['Rate'].toString(),
             hdate: c['HatchDate'].toString(),
+            hatchries: c['Hatchries'].toString()
           ));
         });
       }
@@ -87,6 +90,7 @@ class _ListDmDataState extends State<ListDmData> {
             mortalty: c['Mortality'].toString(),
             rate: c['Rate'].toString(),
             hdate: c['HatchDate'].toString(),
+              hatchries: c['Hatchries'].toString()
           ));
         });
       }
@@ -207,7 +211,7 @@ class _ListDmDataState extends State<ListDmData> {
                               style: TextStyle(color: Colors.red),
                             ),
                             Text(
-                              'DM Date: ' + dmList[index].dmDate.toString(),
+                              'Chick : ' + dmList[index].Ctype.toString(),
                               style: TextStyle(color: Colors.black),
                             ),
                             Text(
@@ -239,6 +243,12 @@ class _ListDmDataState extends State<ListDmData> {
                                 )
                               ],
                             ),
+
+                            Text(
+                              "Unit:" +
+                                  dmList[index].hatchries.toString(),
+                              style: TextStyle(color: Colors.black),
+                            ),
                             SizedBox(
                               height: 3,
                             ),
@@ -250,6 +260,7 @@ class _ListDmDataState extends State<ListDmData> {
                             SizedBox(
                               height: 3,
                             ),
+
                           ],
                         ),
                         itemCount: dmList.length,
