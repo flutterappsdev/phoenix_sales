@@ -46,8 +46,7 @@ class _DisplayAndSaveTRState extends State<DisplayAndSaveTR> {
   String _valueChicksType = "Broiler";
   double fontSize = 18;
   double height = 15;
-
-
+  bool _isSaved = false;
 
 
   void fetchTRNumber() async {
@@ -247,10 +246,15 @@ class _DisplayAndSaveTRState extends State<DisplayAndSaveTR> {
               SizedBox(
                 height: 20,
               ),
-              RoundedButton(
+             _isSaved ? Center(child: CircularProgressIndicator(strokeWidth: 2,))  : RoundedButton(
                   title: 'Save TR',
                   colour: Colors.lightBlueAccent,
                   onPressed: () async {
+                    setState(() {
+                      _isSaved =true;
+                    });
+
+
                     var connectivityResult =
                     await Connectivity().checkConnectivity();
                     if (connectivityResult != ConnectivityResult.mobile &&
@@ -276,20 +280,24 @@ class _DisplayAndSaveTRState extends State<DisplayAndSaveTR> {
                       print(e);
                     }
                    // showToast("Show Long Toast", duration: Toast.LENGTH_LONG);
+                    setState(() {
+                      _isSaved =false;
+                    });
+
                     Toast.show("TR Data Saved...", context, duration: Toast.LENGTH_LONG, gravity: Toast.CENTER);
 
                     Navigator.pop(context);
                     //Sending SMS
                     try {
                       String _msg =
-                          "Note:This Is Temporary Receipt: Received with thanks $_paymode given qty  Rs:" +
+                          "Note:This Is Temporary Receipt: Received with thanks $_paymode Rs:" +
                              _Tramount +  " @ " + _rate + "From $_CName For $_ctype Chicks By TR No $_TRNumber For Any Query Contact:9685043413 "  ;
                       List<String> recipents = [_MobileNumber];
                       String _r = await sendSMS(
-                          message: _msg, recipients: recipents);
+                         message: _msg, recipients: recipents);
                       //print(_r);
                       FlutterOpenWhatsapp.sendSingleMessage(
-                          "91$_MobileNumber", _msg);
+                       "91$_MobileNumber", _msg);
                     } catch (e) {
                       print(e);
                     }
@@ -305,7 +313,7 @@ class _DisplayAndSaveTRState extends State<DisplayAndSaveTR> {
               SizedBox(
                 height: 3,
               ),
-              RoundedButton(
+              _isSaved ? Center(child: CircularProgressIndicator(strokeWidth: 2,))  : RoundedButton(
                   title: 'Previous...',
                   colour: Colors.lightBlueAccent,
                   onPressed: () {

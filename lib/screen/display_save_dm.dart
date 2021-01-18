@@ -32,6 +32,7 @@ class _SaveSupplyState extends State<SaveSupply> {
 
   double height = 10;
   double fontSize = 18;
+  bool _isSaved = false;
 
   getSupplyData() async {
     SharedPreferences shpSypply = await SharedPreferences.getInstance();
@@ -186,10 +187,13 @@ class _SaveSupplyState extends State<SaveSupply> {
               SizedBox(
                 height: 20,
               ),
-              RoundedButton(
+              _isSaved ? Center(child: CircularProgressIndicator(strokeWidth: 2,))  : RoundedButton(
                   title: 'Save Supply',
                   colour: Colors.lightBlueAccent,
                   onPressed: () async {
+                    setState(() {
+                      _isSaved =true;
+                    });
                     var connectivityResult =
                         await Connectivity().checkConnectivity();
                     if (connectivityResult != ConnectivityResult.mobile &&
@@ -198,6 +202,8 @@ class _SaveSupplyState extends State<SaveSupply> {
                           duration: Toast.LENGTH_LONG, gravity: Toast.CENTER);
                       return;
                     }
+
+
                     fetchDMNumber();
                     try {
                       String url =
