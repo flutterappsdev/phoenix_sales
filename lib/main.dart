@@ -17,6 +17,7 @@ import './screen/List_expense_data.dart';
 import './screen/List_tr_customer.dart';
 import './screen/List_dm_customer.dart';
 import './screen/Pdf_tr.dart';
+import './screen/Pdf_dm.dart';
 
  Future<void> main() async {
    WidgetsFlutterBinding.ensureInitialized();
@@ -55,7 +56,9 @@ class MyApp extends StatelessWidget {
         ListExpenseData.id : (context)=>ListExpenseData(),
         ListTrCustomer.id :(context)=>ListTrCustomer(),
         ListDmCustomer.id :(context)=>ListDmCustomer(),
-        PdfTr.id : (context)=>PdfTr()
+        PdfTr.id : (context)=>PdfTr(),
+        PdfDm.id :(context)=>PdfDm(),
+
 
       },
     );
