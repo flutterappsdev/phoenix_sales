@@ -14,6 +14,9 @@ import './screen/chicks_deamand_screen.dart';
 import './screen/daily_expenses_screen.dart';
 import './screen/List_demand_data.dart';
 import './screen/List_expense_data.dart';
+import './screen/List_tr_customer.dart';
+import './screen/List_dm_customer.dart';
+import './screen/Pdf_tr.dart';
 
  Future<void> main() async {
    WidgetsFlutterBinding.ensureInitialized();
@@ -49,7 +52,11 @@ class MyApp extends StatelessWidget {
         ChicksDemandScreen.id :(context)=>ChicksDemandScreen(),
         DailyExpensesScreen.id : (context)=>DailyExpensesScreen(),
         ListDemadData.id :(context)=>ListDemadData(),
-        ListExpenseData.id : (context)=>ListExpenseData()
+        ListExpenseData.id : (context)=>ListExpenseData(),
+        ListTrCustomer.id :(context)=>ListTrCustomer(),
+        ListDmCustomer.id :(context)=>ListDmCustomer(),
+        PdfTr.id : (context)=>PdfTr()
+
       },
     );
   }

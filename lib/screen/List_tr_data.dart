@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../network/network.dart';
 import '../constant/constants.dart';
 import '../widgets/rounded_button.dart';
+import '../screen/Pdf_tr.dart';
 
 class ListTr {
   final String TrNo;
@@ -197,74 +198,88 @@ class _ListTrDataState extends State<ListTrData> {
               child: SizedBox(
                 height: MediaQuery.of(context).size.height - 300,
                 child: ListView.builder(
-                  itemBuilder: (context, index) => Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Text(
-                        trList[index].TrNo.toString(),
-                        style: TextStyle(color: Colors.green),
-                      ),
-                      Text(
-                        trList[index].CName +
-                            "#" +
-                            trList[index].CCode.toString(),
-                        style: TextStyle(color: Colors.red),
-                      ),
-                      Text('TR DaTe: '+
-                        trList[index].TrDate.toString(),
-                        style: TextStyle(color: Colors.black),
-                      ),
+                  itemBuilder: (context, index) => GestureDetector(
+                    onTap: (){
+                      Navigator.pushNamed(context, PdfTr.id , arguments: {
+                        'trno':trList[index].TrNo.toString(),
+                        'trdate': trList[index].TrDate.toString(),
+                        'cname':trList[index].CName +"#" + trList[index].CCode.toString(),
+                        'amt':trList[index].Amount.toString(),
+                        'bankdet': trList[index].bankdet.toString(),
+                        'hatchdate':trList[index].hatchdate.toString(),
+                        'rate':trList[index].rate.toString(),
+                      });
+                      print('tr pds');
+                    },
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Text(
+                          trList[index].TrNo.toString(),
+                          style: TextStyle(color: Colors.green),
+                        ),
+                        Text(
+                          trList[index].CName +
+                              "#" +
+                              trList[index].CCode.toString(),
+                          style: TextStyle(color: Colors.red),
+                        ),
+                        Text('TR DaTe: '+
+                          trList[index].TrDate.toString(),
+                          style: TextStyle(color: Colors.black),
+                        ),
 
-                      Row(
-                        children: [
-                          Expanded(
-                            child: Text('TR Amount: ' +
-                                trList[index].Amount.toString(),
-                              style: TextStyle(color: Colors.black),
+                        Row(
+                          children: [
+                            Expanded(
+                              child: Text('TR Amount: ' +
+                                  trList[index].Amount.toString(),
+                                style: TextStyle(color: Colors.black),
+                              ),
                             ),
-                          ),
-                          SizedBox(width: 10,),
-                          Expanded(
-                            child: Text('Rate: ' +
-                                trList[index].rate .toString(),
-                              style: TextStyle(color: Colors.black),
+                            SizedBox(width: 10,),
+                            Expanded(
+                              child: Text('Rate: ' +
+                                  trList[index].rate .toString(),
+                                style: TextStyle(color: Colors.black),
+                              ),
                             ),
-                          ),
-                        ],
-                      ),
+                          ],
+                        ),
 
-                      Row(
-                        children: [
-                          Expanded(
-                            child: Text('' +
-                                trList[index].Ctype.toString(),
-                              style: TextStyle(color: Colors.black),
+                        Row(
+                          children: [
+                            Expanded(
+                              child: Text('' +
+                                  trList[index].Ctype.toString(),
+                                style: TextStyle(color: Colors.black),
+                              ),
                             ),
-                          ),
-                          SizedBox(width: 5,),
-                          Expanded(
-                            child: Text('Hatch Date: ' +
-                                trList[index].hatchdate.toString(),
-                              style: TextStyle(color: Colors.black),
+                            SizedBox(width: 5,),
+                            Expanded(
+                              child: Text('Hatch Date: ' +
+                                  trList[index].hatchdate.toString(),
+                                style: TextStyle(color: Colors.black),
+                              ),
                             ),
-                          ),
-                        ],
-                      ),
-                      Text(
-                        trList[index].bankdet.toString(),
-                        style: TextStyle(color: Colors.black),
-                      ),
-                      SizedBox(height: 3,),
-                      Divider(
-                        height: 3,
-                        thickness: 1.5,
-                        color: Colors.blue,
-                      ),
-                      SizedBox(height: 3,),
-                    ],
+                          ],
+                        ),
+                        Text(
+                          trList[index].bankdet.toString(),
+                          style: TextStyle(color: Colors.black),
+                        ),
+                        SizedBox(height: 3,),
+                        Divider(
+                          height: 3,
+                          thickness: 1.5,
+                          color: Colors.blue,
+                        ),
+                        SizedBox(height: 3,),
+                      ],
+                    ),
                   ),
                   itemCount: trList.length,
                 ),

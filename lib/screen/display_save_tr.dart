@@ -99,7 +99,7 @@ class _DisplayAndSaveTRState extends State<DisplayAndSaveTR> {
   void didChangeDependencies() {
     // TODO: implement didChangeDependencies
     getTRData();
-    fetchTRNumber();
+   // fetchTRNumber();
     super.didChangeDependencies();
   }
 

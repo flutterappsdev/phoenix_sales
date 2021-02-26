@@ -44,8 +44,8 @@ class _SupplyEntryScreenState extends State<SupplyEntryScreen> {
     final DateTime picked = await showDatePicker(
       context: context,
       initialDate: selectedDate, // Refer step 1
-      firstDate: DateTime(2000),
-      lastDate: DateTime(2025),
+      firstDate: selectedDate,
+      lastDate: selectedDate,
     );
 
     if (picked != null && picked != selectedDate) {
@@ -341,8 +341,8 @@ class _SupplyEntryScreenState extends State<SupplyEntryScreen> {
                             value: 'Broiler',
                           ),
                           DropdownMenuItem(
-                            child: Text("Broiler(M+)"),
-                            value: 'Broiler(M+)',
+                            child: Text("Broiler(M)"),
+                            value: 'Broiler(M)',
                           ),
                           DropdownMenuItem(
                             child: Text("Layer"),

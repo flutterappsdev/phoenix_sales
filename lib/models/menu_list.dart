@@ -27,9 +27,10 @@ const DUMMY_CATEGORIES = const [
   ),
   Menu(
     id: 'c4',
-    title: 'Bank Deposit',
+    title: 'List TR(Customer)',
+    routeName: 'ListTrCustomer',
     color: Colors.amber,
-      icon: FontAwesomeIcons.piggyBank
+      icon: FontAwesomeIcons.list
   ),
   Menu(
       id: 'c4',
@@ -72,6 +73,14 @@ const DUMMY_CATEGORIES = const [
     color: Colors.pink,
       routeName: 'ListExpenseData',
       icon: FontAwesomeIcons.moneyBillWave
+  ),
+
+  Menu(
+      id: 'c4',
+      title: 'List Supply(Customer)',
+      color: Colors.amber,
+      routeName: 'ListDmCustomer',
+      icon: FontAwesomeIcons.list
   ),
   Menu(
     id: 'c10',

@@ -103,8 +103,8 @@ class _TrEntryScreenState extends State<TrEntryScreen> {
     final DateTime picked = await showDatePicker(
       context: context,
       initialDate: selectedDate, // Refer step 1
-      firstDate: DateTime(2000),
-      lastDate: DateTime(2025),
+      firstDate: selectedDate,
+      lastDate: selectedDate,
     );
 
     if (picked != null && picked != selectedDate) {
@@ -149,7 +149,7 @@ class _TrEntryScreenState extends State<TrEntryScreen> {
     if (picked != null && picked != selectedHatchDate) {
       setState(() {
         selectedHatchDate = picked;
-        _hatchDateController.text = selectedDate.toString().split(' ')[0];
+        _hatchDateController.text = selectedHatchDate.toString().split(' ')[0];
       });
     } else {
       _hatchDateController.text = selectedHatchDate.toString().split(' ')[0];
@@ -309,6 +309,7 @@ class _TrEntryScreenState extends State<TrEntryScreen> {
                   Flexible(
                     flex: 6,
                     child: TextField(
+                      readOnly: true,
                       controller: _trDateController,
                       style: TextStyle(color: Colors.black, fontSize: 18),
                       decoration: kTextFieldDecoration.copyWith(
@@ -481,6 +482,7 @@ class _TrEntryScreenState extends State<TrEntryScreen> {
                   Flexible(
                     flex: 6,
                     child: TextField(
+                      readOnly: true,
                       controller: _hatchDateController,
                       style: TextStyle(color: Colors.black, fontSize: 18),
                       decoration: kTextFieldDecoration.copyWith(
@@ -516,8 +518,8 @@ class _TrEntryScreenState extends State<TrEntryScreen> {
                             value: 'Broiler',
                           ),
                           DropdownMenuItem(
-                            child: Text("Broiler(M+)"),
-                            value: 'Broiler(M+)',
+                            child: Text("Broiler(M)"),
+                            value: 'Broiler(M)',
                           ),
                           DropdownMenuItem(
                             child: Text("Layer"),

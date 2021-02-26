@@ -45,6 +45,9 @@ dependencies:
   firebase_storage: ^5.0.1
   location: ^3.1.0
   google_maps_flutter: ^1.0.6
+  printing:
+  url_launcher:
+  pdf:
   #image: ^2.1.19
   #flutter_native_image: ^0.0.5+3
 
@@ -66,6 +69,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/
+    - assets/
     #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
