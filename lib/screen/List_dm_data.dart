@@ -91,7 +91,7 @@ class _ListDmDataState extends State<ListDmData> {
             mortalty: c['Mortality'].toString(),
             rate: c['Rate'].toString(),
             hdate: c['HatchDate'].toString(),
-              hatchries: c['Hatchries'].toString()
+            hatchries: c['Hatchries'].toString()
           ));
         });
       }
@@ -204,7 +204,8 @@ class _ListDmDataState extends State<ListDmData> {
                               'hatchdate':dmList[index].hdate.toString(),
                               'ctype': dmList[index].Ctype .toString(),
                               'qty':dmList[index].totalChicks.toString(),
-                              'rate':dmList[index].rate.toString(),
+                              'mortality':dmList[index].mortalty.toString(),
+                             'rate':dmList[index].rate.toString(),
                             });
                             print('tr pds');
 

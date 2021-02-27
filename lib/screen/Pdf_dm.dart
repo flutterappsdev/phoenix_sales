@@ -22,7 +22,7 @@ class _PdfDmState extends State<PdfDm> {
             trdata['ctype'].toString(),
             trdata['qty'].toString(),
             trdata['mortality'].toString(),
-            trdata['rate'].toString()
+           trdata['rate'].toString()
         ),
       ),
     );

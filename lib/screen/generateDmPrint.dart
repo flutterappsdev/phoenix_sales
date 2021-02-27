@@ -18,13 +18,29 @@ String trdate1;
 
 String hdate1;
 String rate1;
+
+String qty1='';
+String mortality1='';
+String ctype1='';
+double free=0;
+//
 Future<Uint8List> generateDmPrint(PdfPageFormat format,String dmno,String dmdate,String  cname,String hdate,String ctype,String qty, String mortality,String rate) async {
-  final doc = pw.Document(title: 'Tr Print', author: 'Krishna Sharma');
+  final doc = pw.Document(title: 'Dm Print', author: 'Krishna Sharma');
 
   trno1= dmno;
   trdate1 = dmdate;
   hdate1= hdate;
   rate1 = rate;
+  ctype1 =ctype;
+  mortality1 = mortality;
+  qty1= qty;
+   if (ctype1 == 'Broiler'){
+   free = double.parse(qty1)*2/102;
+   }
+   if (ctype1 == 'Layer'){
+     free = double.parse(qty1)*5/105;
+   }
+
   final profileImage = pw.MemoryImage(
     (await rootBundle.load('assets/images/logo.JPG')).buffer.asUint8List(),
   );
@@ -218,12 +234,15 @@ class _Block extends pw.StatelessWidget {
                 crossAxisAlignment: pw.CrossAxisAlignment.start,
                 children: <pw.Widget>[
                   // pw.Lorem(length: 20),
-                  pw.Text('Tr No.:'+trno1),
-                  pw.Text('Tr Date.:'+trdate1),
-                 // pw.Text('Amount:'+amt1),
-                  pw.Text('Rate:'+rate1),
-                  //pw.Text('Remarks:'+bankdet1),
+                  pw.Text('DM No.:'+trno1),
+                  pw.Text('DM Date.:'+trdate1),
                   pw.Text('Hatch Date:'+hdate1),
+                  pw.Text('Chick Type:'+ctype1),
+                  pw.Text('Quantity:'+qty1),
+                  pw.Text('Mortality:'+mortality1),
+                  pw.Text('Rate:'+rate1),
+                  pw.Text('Free Qty:'+free.toStringAsFixed(0)),
+
                 ]),
           ),
         ]);
