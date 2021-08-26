@@ -4,6 +4,7 @@ import '../widgets/rounded_button.dart';
 import '../constant/constants.dart';
 import '../models/customer.dart';
 import '../network/network.dart';
+import '../screen/Pdf_dm.dart';
 
 
 class ListDm {
@@ -101,7 +102,7 @@ class _ListDmCustomerState extends State<ListDmCustomer> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('List DM Customer'),
+        title: Text('List Supply Customer'),
       ),
       body: Padding(
         padding: EdgeInsets.all(8),
@@ -157,7 +158,7 @@ class _ListDmCustomerState extends State<ListDmCustomer> {
             ),
             SizedBox(height: 5),
             RoundedButton(
-                title: 'Show TR',
+                title: 'Show Supply',
                 colour: Colors.lightBlueAccent,
                 onPressed: () async {
                   filldmData();
@@ -175,74 +176,87 @@ class _ListDmCustomerState extends State<ListDmCustomer> {
               child: SizedBox(
                 height: MediaQuery.of(context).size.height - 300,
                 child: ListView.builder(
-                  itemBuilder: (context, index) => Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Text(
-                        dmList[index].dmNo.toString(),
-                        style: TextStyle(color: Colors.green),
-                      ),
-                      Text(
-                        dmList[index].CName +
-                            "#" +
-                            dmList[index].CCode.toString(),
-                        style: TextStyle(color: Colors.red),
-                      ),
-                      Text(
-                        'Chick : ' + dmList[index].Ctype.toString(),
-                        style: TextStyle(color: Colors.black),
-                      ),
-                      Text(
-                        'Hatch Date: ' + dmList[index].hdate.toString(),
-                        style: TextStyle(color: Colors.black),
-                      ),
-                      Text(
-                        "Total Chicks " +
-                            dmList[index].totalChicks.toString(),
-                        style: TextStyle(color: Colors.black),
-                      ),
-                      Row(
-                        children: [
-                          Expanded(
-                            child: Text(
-                              "Transit Mortality: " +
-                                  dmList[index].mortalty.toString(),
-                              style: TextStyle(color: Colors.black),
+                  itemBuilder: (context, index) => GestureDetector(
+                    onTap: (){
+    Navigator.pushNamed(context, PdfDm.id , arguments: {
+    'dmno':dmList[index].dmNo.toString(),
+    'dmdate': dmList[index].dmDate.toString(),
+    'cname':dmList[index].CName +"#" + dmList[index].CCode.toString(),
+    'hatchdate':dmList[index].hdate.toString(),
+    'ctype': dmList[index].Ctype .toString(),
+    'qty':dmList[index].totalChicks.toString(),
+    'mortality':dmList[index].mortalty.toString(),
+    'rate':dmList[index].rate.toString(),});
+                    },
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Text(
+                          dmList[index].dmNo.toString(),
+                          style: TextStyle(color: Colors.green),
+                        ),
+                        Text(
+                          dmList[index].CName +
+                              "#" +
+                              dmList[index].CCode.toString(),
+                          style: TextStyle(color: Colors.red),
+                        ),
+                        Text(
+                          'Chick : ' + dmList[index].Ctype.toString(),
+                          style: TextStyle(color: Colors.black),
+                        ),
+                        Text(
+                          'Hatch Date: ' + dmList[index].hdate.toString(),
+                          style: TextStyle(color: Colors.black),
+                        ),
+                        Text(
+                          "Total Chicks " +
+                              dmList[index].totalChicks.toString(),
+                          style: TextStyle(color: Colors.black),
+                        ),
+                        Row(
+                          children: [
+                            Expanded(
+                              child: Text(
+                                "Transit Mortality: " +
+                                    dmList[index].mortalty.toString(),
+                                style: TextStyle(color: Colors.black),
+                              ),
                             ),
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Expanded(
-                            child: Text(
-                              "Rate: " + dmList[index].rate.toString(),
-                              style: TextStyle(color: Colors.black),
+                            SizedBox(
+                              width: 10,
                             ),
-                          )
-                        ],
-                      ),
+                            Expanded(
+                              child: Text(
+                                "Rate: " + dmList[index].rate.toString(),
+                                style: TextStyle(color: Colors.black),
+                              ),
+                            )
+                          ],
+                        ),
 
-                      Text(
-                        "Unit:" +
-                            dmList[index].hatchries.toString(),
-                        style: TextStyle(color: Colors.black),
-                      ),
-                      SizedBox(
-                        height: 3,
-                      ),
-                      Divider(
-                        height: 3,
-                        thickness: 1.5,
-                        color: Colors.blue,
-                      ),
-                      SizedBox(
-                        height: 3,
-                      ),
+                        Text(
+                          "Unit:" +
+                              dmList[index].hatchries.toString(),
+                          style: TextStyle(color: Colors.black),
+                        ),
+                        SizedBox(
+                          height: 3,
+                        ),
+                        Divider(
+                          height: 3,
+                          thickness: 1.5,
+                          color: Colors.blue,
+                        ),
+                        SizedBox(
+                          height: 3,
+                        ),
 
-                    ],
+                      ],
+                    ),
                   ),
                   itemCount: dmList.length,
                 ),

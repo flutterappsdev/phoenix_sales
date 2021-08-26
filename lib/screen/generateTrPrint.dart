@@ -19,7 +19,8 @@ String amt1;
 String bankdet1;
 String hdate1;
 String rate1;
-Future<Uint8List> generateTrPrint(PdfPageFormat format,String trno,String trdate,String  cname,String amt,String bankdet,String hdate, String rate) async {
+String bankdate1;
+Future<Uint8List> generateTrPrint(PdfPageFormat format,String trno,String trdate,String  cname,String amt,String bankdet,String hdate, String rate,String bankdate) async {
   final doc = pw.Document(title: 'Tr Print', author: 'Krishna Sharma');
 
   trno1= trno;
@@ -28,6 +29,7 @@ Future<Uint8List> generateTrPrint(PdfPageFormat format,String trno,String trdate
   bankdet1 = bankdet;
   rate1= rate;
   hdate1= hdate;
+  bankdate1= bankdate;
   final profileImage = pw.MemoryImage(
     (await rootBundle.load('assets/images/logo.JPG')).buffer.asUint8List(),
   );
@@ -225,8 +227,9 @@ class _Block extends pw.StatelessWidget {
                   pw.Text('Tr Date.:'+trdate1),
                   pw.Text('Amount:'+amt1),
                   pw.Text('Rate:'+rate1),
-                  pw.Text('Remarks:'+bankdet1),
                   pw.Text('Hatch Date:'+hdate1),
+                  pw.Text(bankdet1),
+                  pw.Text('Deposit Date:'+bankdate1),
                 ]),
           ),
         ]);

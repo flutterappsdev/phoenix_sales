@@ -21,7 +21,8 @@ class _PdfTrState extends State<PdfTr> {
             trdata['amt'].toString(),
             trdata['bankdet'].toString(),
             trdata['hatchdate'].toString(),
-            trdata['rate'].toString()
+            trdata['rate'].toString(),
+          trdata['bankdate'].toString()
          ),
       ),
     );

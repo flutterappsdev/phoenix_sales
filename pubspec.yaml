@@ -48,6 +48,7 @@ dependencies:
   printing:
   url_launcher:
   pdf:
+  splashscreen: ^1.3.5
   #image: ^2.1.19
   #flutter_native_image: ^0.0.5+3
 

@@ -17,6 +17,7 @@ class ListTr {
   final String hatchdate;
   final String paytype;
   final String rate;
+  final String bankdate;
   ListTr(
       {this.TrNo,
       this.TrDate,
@@ -27,7 +28,7 @@ class ListTr {
       this.bankdet,
       this.hatchdate,
       this.paytype,
-      this.rate});
+      this.rate,this.bankdate});
 }
 
 class ListTrCustomer extends StatefulWidget {
@@ -78,10 +79,11 @@ class _ListTrCustomerState extends State<ListTrCustomer> {
             CName: c['CName'].toString(),
             Ctype: c['Chick_type'].toString(),
             bankdet: c['Bank_det'].toString(),
-            hatchdate: c['bankdate'].toString(),
+            hatchdate: c['HatchDate'].toString(),
             paytype: c['Pay_mode'].toString(),
             rate: c['Rate'].toString(),
-          ));
+            bankdate: c['bankdate'].toString(),
+          ),);
         });
       }
     }
@@ -188,6 +190,7 @@ class _ListTrCustomerState extends State<ListTrCustomer> {
                               'bankdet': trList[index].bankdet.toString(),
                               'hatchdate': trList[index].hatchdate.toString(),
                               'rate': trList[index].rate.toString(),
+                              'bankdate': trList[index].bankdate.toString(),
                             });
                           },
                           child: Column(
@@ -252,6 +255,10 @@ class _ListTrCustomerState extends State<ListTrCustomer> {
                               ),
                               Text(
                                 trList[index].bankdet.toString(),
+                                style: TextStyle(color: Colors.black),
+                              ),
+                              Text('Deposit Date:'+
+                                  trList[index].bankdate.toString(),
                                 style: TextStyle(color: Colors.black),
                               ),
                               SizedBox(

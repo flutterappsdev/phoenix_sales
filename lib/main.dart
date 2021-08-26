@@ -18,6 +18,7 @@ import './screen/List_tr_customer.dart';
 import './screen/List_dm_customer.dart';
 import './screen/Pdf_tr.dart';
 import './screen/Pdf_dm.dart';
+import './screen/splashscreenforapp.dart';
 
  Future<void> main() async {
    WidgetsFlutterBinding.ensureInitialized();
@@ -41,7 +42,7 @@ class MyApp extends StatelessWidget {
         ),
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: LoginScreen(),
+      home: SplashScreenForApp(),
       routes: {
         SalesMenuGrid.id : (context)=>SalesMenuGrid(),
         TrEntryScreen.id : (context)=>TrEntryScreen(),
@@ -58,8 +59,6 @@ class MyApp extends StatelessWidget {
         ListDmCustomer.id :(context)=>ListDmCustomer(),
         PdfTr.id : (context)=>PdfTr(),
         PdfDm.id :(context)=>PdfDm(),
-
-
       },
     );
   }

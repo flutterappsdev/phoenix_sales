@@ -429,6 +429,7 @@ class _TrEntryScreenState extends State<TrEntryScreen> {
                   Flexible(
                     flex: 6,
                     child: TextField(
+                      readOnly: true,
                       controller: _bandepositDateController,
                       style: TextStyle(color: Colors.black, fontSize: 18),
                       decoration: kTextFieldDecoration.copyWith(

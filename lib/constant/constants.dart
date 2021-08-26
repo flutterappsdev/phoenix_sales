@@ -39,3 +39,14 @@ const kTextFieldDecoration = InputDecoration(
     borderRadius: BorderRadius.all(Radius.circular(15.0)),
   ),
 );
+
+
+const List<Color> signInGradients = [
+  Color(0xFF0EDED2),
+  Color(0xFF03A0FE),
+];
+
+const List<Color> signUpGradients = [
+  Color(0xFFFF9945),
+  Color(0xFFFc6076),
+];

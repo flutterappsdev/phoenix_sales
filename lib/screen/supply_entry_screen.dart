@@ -44,7 +44,7 @@ class _SupplyEntryScreenState extends State<SupplyEntryScreen> {
     final DateTime picked = await showDatePicker(
       context: context,
       initialDate: selectedDate, // Refer step 1
-      firstDate: selectedDate,
+      firstDate: selectedDate.subtract(Duration(days: 5, hours: 2)),
       lastDate: selectedDate,
     );
 
@@ -231,6 +231,7 @@ class _SupplyEntryScreenState extends State<SupplyEntryScreen> {
                   Flexible(
                     flex: 6,
                     child: TextField(
+                      readOnly: true,
                       controller: _supplyDateController,
                       style: TextStyle(color: Colors.black, fontSize: 18),
                       decoration: kTextFieldDecoration.copyWith(
@@ -263,6 +264,7 @@ class _SupplyEntryScreenState extends State<SupplyEntryScreen> {
                   Flexible(
                     flex: 6,
                     child: TextField(
+                      readOnly: true,
                       controller: _hatchDateController,
                       style: TextStyle(color: Colors.black, fontSize: 18),
                       decoration: kTextFieldDecoration.copyWith(
